@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,52 +7,47 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Watch {
-id                String  @id @default(cuid())
-brand             String
-author             User  @relation(fields: [authorId], references: [id])
-authorId          String
-model             String
-cristal           String
-waterResist       String
-size              String
-price             Int
-machine           String
-image             String @default("sample.jpg")
+  id          String @id @default(cuid())
+  brand       String
+  author      User   @relation(fields: [authorId], references: [id])
+  authorId    String
+  model       String
+  cristal     String
+  waterResist String
+  size        String
+  price       Int
+  machine     String
+  image       String @default("sample.jpg")
 }
 
-
 model User {
-id              String      @id @default(cuid())
-email           String      @unique
-name            String
-password        String
-LastName        String
-role              Role      @default(user)
-watchs Watch[]
+  id       String  @id @default(cuid())
+  email    String  @unique
+  name     String
+  password String
+  LastName String
+  role     Role    @default(user)
+  watchs   Watch[]
 }
 
 enum Role {
-user
-admin
+  user
+  admin
 }
 
+model Carrito {
+  id          String  @id @default(cuid())
+  brand       String
+  price       Int
+  description String
+  image       String
+  orders      Order[]
+}
 
- model Carrito {
-    id                String      @id @default(cuid())
-    brand             String
-    price             Int
-    description       String
-    image             String
-    orders Order[]
-  }
-
-
-  model Order {
-    id                String      @id @default(cuid())
-    quantity          Int
-    total             Int
-    carrito Carrito[]
-  }
-  
+model Order {
+  id       String    @id @default(cuid())
+  quantity Int
+  total    Int
+  carrito  Carrito[]
+}
