@@ -8,22 +8,17 @@ module.exports = {
   extends: ['xo', 'prettier'],
   overrides: [
     {
-      env: {
-        node: true,
-      },
-      files: ['.eslintrc.{js,cjs}'],
-      parserOptions: {
-        sourceType: 'script',
-      },
-    },
-    {
-      extends: ['xo-typescript'],
+      extends: ['xo-typescript', 'prettier'],
       files: ['*.ts', '*.tsx'],
     },
   ],
+  // Alt parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
+    tsconfigRootDir: __dirname,
+    project: '/tsconfig.json',
   },
+  // Alt plugins: ['@typescript-eslint'],
   rules: {},
 };

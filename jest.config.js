@@ -4,10 +4,10 @@ const config = {
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
     'index.ts',
+    'baseRepo.ts',
     'entities',
     'interface',
     'tools',
-    'type',
     '_mock',
   ],
   coverageProvider: 'v8',
