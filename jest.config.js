@@ -5,6 +5,7 @@ const config = {
   coveragePathIgnorePatterns: [
     'index.ts',
     'entities',
+    'type',
     'interface',
     'tools',
     '_mock',
