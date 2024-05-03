@@ -1,5 +1,3 @@
-import e from 'express';
-
 export type Repo<T, C> = {
   readAll(): Promise<T[]>;
   readById(id: string): Promise<T>;

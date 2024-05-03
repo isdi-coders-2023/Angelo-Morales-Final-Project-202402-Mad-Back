@@ -4,8 +4,8 @@ const config = {
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
     'index.ts',
-    'baseRepo.ts',
     'entities',
+    'type.repo.ts',
     'interface',
     'tools',
     '_mock',
