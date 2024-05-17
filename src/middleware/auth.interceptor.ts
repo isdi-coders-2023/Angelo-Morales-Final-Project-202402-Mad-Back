@@ -11,6 +11,7 @@ export class AuthInterceptor {
   }
 
   authentication(req: Request, _res: Response, next: NextFunction) {
+    console.log('BODY', req.body);
     debug('Authenticating');
 
     const data = req.get('Authorization');

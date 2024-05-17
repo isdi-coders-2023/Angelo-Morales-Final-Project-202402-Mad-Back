@@ -3,6 +3,7 @@ import { HttpError } from '../middleware/errors.middleware.js';
 import { BaseController } from './base.controller.js';
 import { type Repo } from '../repositories/type.repo.js';
 import { type ObjectSchema } from 'joi';
+import { watch } from 'fs';
 
 type TestModel = Record<string, unknown>;
 type TestCreateDto = Record<string, unknown>;
@@ -82,9 +83,9 @@ describe('Given a instance of the class TestController', () => {
 
   describe('When we use the method create', () => {
     test('Then it should call repo.create', async () => {
-      const article = { test: 'test' };
-      req.body = article;
-      (repo.create as jest.Mock).mockResolvedValue(article);
+      const watch = { test: 'test' };
+      req.body = watch;
+      (repo.create as jest.Mock).mockResolvedValue(watch);
       await controller.create(req, res, next);
       expect(repo.create).toHaveBeenCalledWith({});
       expect(res.status).toHaveBeenCalledWith(201);
@@ -98,8 +99,8 @@ describe('Given a instance of the class TestController', () => {
         error: new Error('error'),
         value: {},
       });
-      const article = { title: 'title' };
-      req.body = article;
+      const watch = { title: 'title' };
+      req.body = watch;
       await controller.create(req, res, next);
       expect(next).toHaveBeenCalledWith(
         new HttpError(406, 'Not Acceptable', 'error')
@@ -111,8 +112,8 @@ describe('Given a instance of the class TestController', () => {
     test('Then it should call repo.create and next', async () => {
       const error = new Error('Something went wrong');
       (repo.create as jest.Mock).mockRejectedValue(error);
-      const article = { title: 'title', author: 'autor' };
-      req.body = article;
+      const watch = { title: 'title', author: 'autor' };
+      req.body = watch;
       await controller.create(req, res, next);
       expect(next).toHaveBeenCalledWith(error);
     });
@@ -120,13 +121,13 @@ describe('Given a instance of the class TestController', () => {
 
   describe('When we use the method update', () => {
     test('Then it should call repo.update', async () => {
-      const article = { title: 'title', authorId: 'test' };
+      const watch = { title: 'title', authorId: 'test' };
       req.params = { id: '1' };
-      req.body = article;
-      (repo.update as jest.Mock).mockResolvedValue(article);
+      req.body = watch;
+      (repo.update as jest.Mock).mockResolvedValue(watch);
       await controller.update(req, res, next);
-      expect(repo.update).toHaveBeenCalledWith('1', article);
-      expect(res.json).toHaveBeenCalledWith(article);
+      expect(repo.update).toHaveBeenCalledWith('1', watch);
+      expect(res.json).toHaveBeenCalledWith(watch);
     });
   });
 
@@ -136,8 +137,8 @@ describe('Given a instance of the class TestController', () => {
         error: new Error('error'),
         value: {},
       });
-      const article = { authorId: 34 };
-      req.body = article;
+      const watch = { authorId: 34 };
+      req.body = watch;
       await controller.update(req, res, next);
       expect(next).toHaveBeenCalledWith(
         new HttpError(406, 'Not Acceptable', 'error')
@@ -149,8 +150,8 @@ describe('Given a instance of the class TestController', () => {
     test('Then it should call repo.update and next', async () => {
       const error = new Error('Something went wrong');
       (repo.update as jest.Mock).mockRejectedValue(error);
-      const article = { title: 'title', authorId: 'test' };
-      req.body = article;
+      const watch = { title: 'title', authorId: 'test' };
+      req.body = watch;
       await controller.update(req, res, next);
       expect(next).toHaveBeenCalledWith(error);
     });

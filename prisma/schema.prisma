@@ -16,7 +16,7 @@ model Watch {
   cristal     String
   waterResist String
   size        String
-  price       Int
+  price       String
   machine     String
   image       String @default("sample.jpg")
 }
@@ -39,7 +39,7 @@ enum Role {
 model Carrito {
   id          String  @id @default(cuid())
   brand       String
-  price       Int
+  price       String
   description String
   image       String
   orders      Order[]

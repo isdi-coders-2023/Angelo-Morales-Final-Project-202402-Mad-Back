@@ -33,9 +33,7 @@ export class UsersRepo implements WithLoginRepo<User, UserCreateDto> {
   }
 
   async readAll() {
-    return this.prisma.user.findMany({
-      select,
-    });
+    return this.prisma.user.findMany({ select });
   }
 
   async readById(id: string) {
@@ -51,8 +49,6 @@ export class UsersRepo implements WithLoginRepo<User, UserCreateDto> {
   }
 
   async searchForLogin(key: 'email' | 'name', value: string) {
-    // Check if the key is valid
-
     if (!['email', 'name'].includes(key)) {
       throw new HttpError(404, 'Not Found', 'Invalid query parameters');
     }

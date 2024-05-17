@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Carrito" ALTER COLUMN "price" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "Watch" ALTER COLUMN "price" SET DATA TYPE TEXT;

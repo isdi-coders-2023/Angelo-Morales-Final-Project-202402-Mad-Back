@@ -5,7 +5,7 @@ export const userCreateDtoSchema = Joi.object<UserCreateDto>({
   name: Joi.string().required(),
   email: Joi.string().email().required(),
   password: Joi.string().required(),
-  lastName: Joi.string(),
+  lastName: Joi.string().required(),
 });
 
 export const userUpdateDtoSchema = Joi.object<UserCreateDto>({

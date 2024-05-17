@@ -74,9 +74,7 @@ export class UsersController extends BaseController<User, UserCreateDto> {
     }
 
     req.body.password = await Auth.hash(req.body.password as string);
-
-    req.body.avatar = req.body.cloudinary?.url as string;
-
+    console.log('saliendo del user controller');
     await super.create(req, res, next);
   }
 

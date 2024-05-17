@@ -36,6 +36,7 @@ export abstract class BaseController<T, C> {
 
   async create(req: Request, res: Response, next: NextFunction) {
     const data = req.body as C;
+    console.log(data);
 
     const {
       error,
@@ -48,6 +49,7 @@ export abstract class BaseController<T, C> {
       });
 
     if (error) {
+      console.log('soy el error del super');
       next(new HttpError(406, 'Not Acceptable', error.message));
       return;
     }
@@ -57,6 +59,7 @@ export abstract class BaseController<T, C> {
       res.status(201);
       res.json(result);
     } catch (error) {
+      console.log('repo errpr');
       next(error);
     }
   }
