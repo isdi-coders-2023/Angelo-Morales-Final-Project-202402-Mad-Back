@@ -7,7 +7,6 @@ import {
 import { type Repo } from '../repositories/type.repo.js';
 import { BaseController } from './base.controller.js';
 import { type Request, type Response, type NextFunction } from 'express';
-import { HttpError } from '../middleware/errors.middleware.js';
 import { type Payload } from '../services/auth.services.js';
 const debug = createDebug('events:controller');
 

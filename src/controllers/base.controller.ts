@@ -66,9 +66,10 @@ export abstract class BaseController<T, C> {
 
   async update(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params;
-    const data = req.body as C;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const { payload, ...rest } = req.body;
 
-    const { error } = this.validateCreateDtoSchema.validate(data, {
+    const { error } = this.validateCreateDtoSchema.validate(rest, {
       abortEarly: false,
     });
 
@@ -78,7 +79,7 @@ export abstract class BaseController<T, C> {
     }
 
     try {
-      const result = await this.repo.update(id, data);
+      const result = await this.repo.update(id, rest as Partial<C>);
       res.json(result);
     } catch (error) {
       next(error);
